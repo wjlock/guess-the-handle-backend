@@ -12,7 +12,7 @@ const db = require('../models');
 
 // GET api/books/test (Public)
 router.get('/test', (req, res) => {
-    res.json({ msg: 'Books endpoint OK!'});
+    res.json({ msg: 'Highscores endpoint OK!'});
 });
 
 module.exports = router;
