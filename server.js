@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 8000;
 // API
 const users = require('./api/users');
 const highscores = require('./api/highscores');
+const calls = require('./api/calls')
 
 // Middleware
 app.use(cors());
@@ -27,6 +28,7 @@ app.get('/', (req, res) => {
 // Routes
 app.use('/api/users', users);
 app.use('/api/highscores', highscores);
+app.use('/api/calls', calls)
 
 
 

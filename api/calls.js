@@ -1,4 +1,3 @@
-// Imports
 require('dotenv').config();
 const express = require('express');
 const router = express.Router();
@@ -11,26 +10,15 @@ var client = new Twitter({
     consumer_key: process.env.TWITTER_CONSUMER_KEY,
     consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
     bearer_token: process.env.TWITTER_BEARER_TOKEN
-  });
+  })
 
-// Models
-// const db = require('../models');
-
-// GET api/highscores/test (Public)
-router.get('/test', (req, res) => {
-    res.json({ msg: 'Highscores endpoint OK!'});
-});
-
-
-//Test route for twitter API
-router.get('/twitter', (req, res) => {
+router.get('/newtweet', (req, res) => {
     client.get('search/tweets.json?q=sports&result_type=popular', function(error, response) {
         if(error) {
             throw error
         }
-        console.log(response)
-    }
+    res.send(response)
+}
 )})
-
 
 module.exports = router;
