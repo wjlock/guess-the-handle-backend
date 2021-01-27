@@ -5,20 +5,11 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const JWT_SECRET = process.env.JWT_SECRET;
-var Twitter = require('twitter');
-var client = new Twitter({
-    consumer_key: process.env.TWITTER_CONSUMER_KEY,
-    consumer_secret: process.env.TWITTER_CONSUMER_SECRET,
-    bearer_token: process.env.TWITTER_BEARER_TOKEN
-  })
+const { newQuizRound } = require('./helpers/quiz')
 
-router.get('/newtweet', (req, res) => {
-    client.get('search/tweets.json?q=sports&result_type=popular', function(error, response) {
-        if(error) {
-            throw error
-        }
-    res.send(response)
-}
-)})
+router.get('/newtweet', async (req, res) => {
+    const quiz = await newQuizRound(req.query.q, 4)
+    res.json(quiz)
+})
 
 module.exports = router;
